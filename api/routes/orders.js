@@ -8,14 +8,19 @@ router.get('/', (req, res, next) => {
     });
 });
 
-router.post('/', (req, res, next) => {
-    res.status(201).json({
-        message: 'Order wes created'
+router.post('/', (req, res) => {
+    const order = {
+        productId: req.body.productId,
+        quantity: req.body.quantity
+    };
+    return res.status(201).json({
+        message: 'Order wes created',
+        order: order 
     });
 });
 
 
-router.delete('/:orderID', (req, res, next) => {
+router.delete('/:orderID', (req, res) => {
     res.status(200).json({
         message: 'You deleted an order with ID ' + req.params.orderId,
         orderID: req.params.orderId
